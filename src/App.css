@@ -1,0 +1,48 @@
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-cream);
+}
+
+.main-content {
+  flex: 1;
+  padding-top: 85px;
+}
+
+button {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-family: 'Inter', sans-serif;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+a {
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 968px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+
+  .main-content {
+    padding-top: 140px;
+  }
+}

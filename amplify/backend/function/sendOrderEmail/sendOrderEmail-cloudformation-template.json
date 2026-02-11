@@ -1,0 +1,98 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "Lambda function to send order confirmation emails via SES",
+  "Parameters": {
+    "env": {
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "LambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "FunctionName": {
+          "Fn::Sub": "sendOrderEmail-${env}"
+        },
+        "Runtime": "nodejs18.x",
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": ["LambdaExecutionRole", "Arn"]
+        },
+        "Code": {
+          "ZipFile": "exports.handler = async (event) => { return { statusCode: 200 }; };"
+        },
+        "Environment": {
+          "Variables": {
+            "ENV": {
+              "Ref": "env"
+            },
+            "REGION": {
+              "Ref": "AWS::Region"
+            }
+          }
+        }
+      }
+    },
+    "LambdaExecutionRole": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Effect": "Allow",
+              "Principal": {
+                "Service": ["lambda.amazonaws.com"]
+              },
+              "Action": ["sts:AssumeRole"]
+            }
+          ]
+        },
+        "Policies": [
+          {
+            "PolicyName": "LambdaExecutionPolicy",
+            "PolicyDocument": {
+              "Version": "2012-10-17",
+              "Statement": [
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "logs:CreateLogGroup",
+                    "logs:CreateLogStream",
+                    "logs:PutLogEvents"
+                  ],
+                  "Resource": "arn:aws:logs:*:*:*"
+                },
+                {
+                  "Effect": "Allow",
+                  "Action": [
+                    "ses:SendEmail",
+                    "ses:SendRawEmail"
+                  ],
+                  "Resource": "*"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    }
+  },
+  "Outputs": {
+    "Name": {
+      "Value": {
+        "Ref": "LambdaFunction"
+      }
+    },
+    "Arn": {
+      "Value": {
+        "Fn::GetAtt": ["LambdaFunction", "Arn"]
+      }
+    },
+    "Region": {
+      "Value": {
+        "Ref": "AWS::Region"
+      }
+    }
+  }
+}

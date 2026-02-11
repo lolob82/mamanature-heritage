@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-green: #8b957a;
+  --secondary-green: #657254;
+  --light-green: #c8e6c9;
+  --accent-gold: #d4af37;
+  --text-dark: #1a1a1a;
+  --text-gray: #666;
+  --bg-cream: #faf8f5;
+  --white: #ffffff;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text-dark);
+  background-color: var(--bg-cream);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+}
+
+.elegant-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
