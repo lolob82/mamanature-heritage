@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import './Header.css';
 
 function Header() {
+  const { getCartCount } = useCart();
+  const cartCount = getCartCount();
+
   return (
     <header className="header">
       <div className="header-container">
@@ -16,6 +20,7 @@ function Header() {
           <Link to="/contact">Contact</Link>
           <Link to="/cart" className="cart-link">
             🛒 Panier
+            {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
           </Link>
         </nav>
       </div>

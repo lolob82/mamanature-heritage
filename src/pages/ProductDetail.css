@@ -104,16 +104,53 @@
   text-align: center;
 }
 
+.action-buttons {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
 .add-to-cart-btn {
-  width: 100%;
-  background-color: #4a7c2c;
+  flex: 1;
+  background: linear-gradient(135deg, #8b957a 0%, #657254 100%);
   color: white;
   border: none;
   padding: 1.2rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 600;
   border-radius: 30px;
-  margin: 2rem 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(139, 149, 122, 0.25);
+}
+
+.add-to-cart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(139, 149, 122, 0.35);
+}
+
+.add-to-cart-btn.added {
+  background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%);
+}
+
+.buy-now-btn {
+  flex: 1;
+  background: var(--accent-gold);
+  color: white;
+  border: none;
+  padding: 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+}
+
+.buy-now-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35);
+  background: #c49a2e;
 }
 
 .product-features {
@@ -149,5 +186,36 @@
 
   .image-placeholder {
     font-size: 6rem;
+  }
+}
+
+.product-certifications {
+  background: linear-gradient(135deg, rgba(139, 149, 122, 0.1) 0%, rgba(101, 114, 84, 0.1) 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-top: 1.5rem;
+  border-left: 4px solid var(--primary-green);
+}
+
+.product-certifications h3 {
+  color: var(--secondary-green);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.product-certifications ul {
+  list-style: none;
+  padding: 0;
+}
+
+.product-certifications li {
+  padding: 0.6rem 0;
+  color: var(--text-dark);
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .action-buttons {
+    flex-direction: column;
   }
 }

@@ -1,20 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useCart } from '../context/CartContext';
 import CheckoutForm from '../components/CheckoutForm';
 import './Cart.css';
 
 function Cart() {
-  // Simulation d'un panier - À remplacer par un state management (Context, Redux, etc.)
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: 'Ligne Vitalité',
-      description: 'Boosters d\'énergie naturels',
-      price: 35.00,
-      quantity: 1
-    }
-  ]);
-  
+  const { cartItems, updateQuantity, removeFromCart, getCartTotal, clearCart } = useCart();
   const [showCheckout, setShowCheckout] = useState(false);
   const [orderCompleted, setOrderCompleted] = useState(false);
   const [orderNumber, setOrderNumber] = useState('');
@@ -22,22 +13,11 @@ function Cart() {
   const handleOrderComplete = (orderNum) => {
     setOrderCompleted(true);
     setOrderNumber(orderNum);
-    setCartItems([]);
+    clearCart();
   };
 
   const calculateTotal = () => {
-    return cartItems.reduce((total, item) => total + (item.price * item.quantity), 0);
-  };
-
-  const updateQuantity = (id, newQuantity) => {
-    if (newQuantity < 1) return;
-    setCartItems(cartItems.map(item => 
-      item.id === id ? { ...item, quantity: newQuantity } : item
-    ));
-  };
-
-  const removeItem = (id) => {
-    setCartItems(cartItems.filter(item => item.id !== id));
+    return getCartTotal();
   };
 
   if (orderCompleted) {
@@ -108,7 +88,7 @@ function Cart() {
                 <div className="item-price">
                   {(item.price * item.quantity).toFixed(2)}€
                 </div>
-                <button className="remove-btn" onClick={() => removeItem(item.id)}>
+                <button className="remove-btn" onClick={() => removeFromCart(item.id)}>
                   ✕
                 </button>
               </div>
