@@ -1,7 +1,7 @@
 // Service pour gérer les commandes et l'envoi d'emails
 
 const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT || 'https://cbetqnjr3k.execute-api.us-east-1.amazonaws.com/prod';
-const API_URL = 'https://cbetqnjr3k.execute-api.us-east-1.amazonaws.com/prod'
+
 /**
  * Envoie un email de confirmation de commande via AWS SES
  * @param {Object} orderData - Données de la commande
@@ -9,11 +9,13 @@ const API_URL = 'https://cbetqnjr3k.execute-api.us-east-1.amazonaws.com/prod'
  */
 export async function sendOrderConfirmationEmail(orderData) {
   try {
-    const response = await fetch(`${API_ENDPOINT}/order`, {
+    const response = await fetch(`${API_ENDPOINT}/orders`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Accept': 'application/json',
       },
+      mode: 'cors',
       body: JSON.stringify(orderData)
     });
 
