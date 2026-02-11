@@ -1,6 +1,6 @@
 // Service pour gérer les commandes et l'envoi d'emails
 
-const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT || 'YOUR_API_GATEWAY_ENDPOINT';
+const API_ENDPOINT = import.meta.env.VITE_API_ENDPOINT || 'https://cbetqnjr3k.execute-api.us-east-1.amazonaws.com/prod';
 
 /**
  * Envoie un email de confirmation de commande via AWS SES
